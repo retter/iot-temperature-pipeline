@@ -1,0 +1,55 @@
+services:
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    hostname: kafka
+    container_name: kafka
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    environment:
+      CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qg
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:29093
+      KAFKA_LISTENERS: PLAINTEXT://kafka:9092,CONTROLLER://kafka:29093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+    volumes:
+      - kafka_data:/var/lib/kafka/data
+
+  postgres:
+    image: postgres:16
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: iot
+      POSTGRES_USER: iotuser
+      POSTGRES_PASSWORD: iotpass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  postgres-writer:
+    build: ./server/postgres-writer
+    depends_on:
+      - kafka
+      - postgres
+    restart: unless-stopped
+
+  kafka-http-ingest:
+    build: ./server/kafka-http-ingest
+    container_name: kafka-http-ingest
+    ports:
+      - "5000:5000"
+    depends_on:
+      - kafka
+    restart: unless-stopped
+volumes:
+  kafka_data:
+  postgres_data:
