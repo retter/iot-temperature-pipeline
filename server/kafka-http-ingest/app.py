@@ -26,7 +26,7 @@ producer = create_producer()
 @app.route("/sensor", methods=["POST"])
 def sensor():
     if not request.is_json:
-    return {"error": "Invalid JSON"}, 400
+        return {"error": "Invalid JSON"}, 400
 
     data = request.json
     print("Received:", data)

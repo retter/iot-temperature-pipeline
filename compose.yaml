@@ -50,6 +50,11 @@ services:
     depends_on:
       - kafka
     restart: unless-stopped
+  etl:
+    build: ./server/etl
+    depends_on:
+      - postgres
+    restart: unless-stopped
 volumes:
   kafka_data:
   postgres_data:
