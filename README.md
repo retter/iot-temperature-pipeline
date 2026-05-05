@@ -238,7 +238,7 @@ GROUP BY device_id;
 ### Power BI Visualization
 
 ```power bi
-[Power BI Visualization](./gallery/powerBI.md)
+[Power BI Visualization](gallery/powerBI.md)
 ```
 
 ---
