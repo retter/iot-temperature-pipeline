@@ -207,7 +207,7 @@ The star schema enables:
 
 ---
 
-# 📈 Example Queries
+# 📈 Example Queries and Visualizations
 
 ### Average temperature per day
 
@@ -235,6 +235,13 @@ GROUP BY device_id;
 
 ---
 
+### Power BI Visualization
+
+```power bi
+[Power BI Visualization](./gallery/powerBI.md)
+```
+
+---
 # 📁 Project Structure
 
 ```
