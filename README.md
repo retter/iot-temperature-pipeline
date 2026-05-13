@@ -207,9 +207,9 @@ The star schema enables:
 
 ---
 
-# 📈 Example Queries
+# 📈 Examples
 
-### Average temperature per day
+### Average temperature per day query
 
 ```sql
 SELECT 
@@ -223,7 +223,7 @@ ORDER BY d.date_id;
 
 ---
 
-### Average temperature per device
+### Average temperature per device query
 
 ```sql
 SELECT 
@@ -232,6 +232,12 @@ SELECT
 FROM fact_temperature
 GROUP BY device_id;
 ```
+
+---
+
+### Power BI Visualization
+
+[Sum of Temperature by DateTime](/gallery/powerbivis_markedup.png)
 
 ---
 
