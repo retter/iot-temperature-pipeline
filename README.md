@@ -241,12 +241,6 @@ GROUP BY device_id;
 
 ---
 
-### Power BI Visualization
-
-[Sum of Temperature by DateTime](/gallery/powerbivis_markedup.png)
-
----
-
 # 📁 Project Structure
 
 ```
