@@ -241,6 +241,12 @@ GROUP BY device_id;
 
 ---
 
+### Power BI Report Builder Paginated Report
+
+[Raw IOT Sensor Temperature by Hour](/gallery/RptBldrPaginated.png)
+
+---
+
 # 📁 Project Structure
 
 ```
